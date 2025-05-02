@@ -26,7 +26,7 @@ Esta es una técnica matemática para analizar señales que cambian con el tiemp
 Al tener claros los topicos mencionados anteriormente se procede a tomar a un sujeto de prueba para medir la señal electrocardiográfica durante 5 minutos en reposo para así garantizar la reducción de ruido experimental y posterior a esos 5 minutos 3 mintos sometiendo al sujeto a audios e imagenes que causarán estrés en el mismo donde se  utilizó una frecuencia de muestreo de tatata, obteniendo la siguiente señal:**ponerseñal**
 
 
-Posterior a esto se realizó un filtro FIR deacuerdo a los parametros de la señal adquirida, para asi obtener la ecuación en diferencial del filtro e implementar el filtro a la señal obtenida asumiendo parámetros iniciales en 0 respectivamente mediante el siguiente código:
+Posterior a esto se realizó un filtro IIR deacuerdo a los parametros de la señal adquirida, para asi obtener la ecuación en diferencial del filtro e implementar el filtro a la señal obtenida asumiendo parámetros iniciales en 0 respectivamente mediante el siguiente código:
 ```ruby
 # === 1. Cargar señal ECG ===
 data = pd.read_csv('C:\\Users\\sachi\\OneDrive - unimilitar.edu.co\\Sexto semestre\\Lab señales\\lab 5\\ecg saamtiago.csv')
@@ -46,8 +46,9 @@ b, a = butter(order, [low, high], btype='band')
 ecg_filtrado = filtfilt(b, a, ecg)
 
 ```
- con la itención de identificar los picos R en la señal obtenida, calcular los intervalos R-R y obtener una nueva señal como se evidencia en la siguiente imagen:
- **poner imagen**
+ con la intención de identificar los picos R en la señal obtenida, calcular los intervalos R-R y obtener una nueva señal como se evidencia en la siguiente imagen:
+ ![image](https://github.com/user-attachments/assets/f74a4a5d-5259-4168-bde3-61d9efe08537)
+ 
 A continuación se calculan los los parámetros básicos de la HRV en el dominio del tiempo, como la media de los intervalos R-R y su desviación estándar de la siguiente manera:
 ```ruby
 # === 3. Detección de Picos R ===
@@ -91,7 +92,7 @@ plt.ylabel('Intervalo (s)')
 plt.grid(True)
 plt.show()
 ```
-Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso **continua o discreta**, utilizando la función wavelet **tatata** con frecuecias de **tatata**, obteniendo el siguiente resultado:
+Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso continua, utilizando la función wavelet Morlet con frecuecias de **tatata**, obteniendo el siguiente resultado:
 ```ruby
 # === 8. Transformada Wavelet de Morlet ===
 scales = np.arange(1, 64)  # Ajusta según el nivel de detalle deseado
@@ -114,7 +115,6 @@ plt.show()
 
 ## Resultados obtenidos
 ![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
-![image](https://github.com/user-attachments/assets/92f17e3a-986b-4fba-b775-03e2ed4f6457)
 ![image](https://github.com/user-attachments/assets/3c257497-1dca-4d4c-be5d-8af4164c3167)
 ![image](https://github.com/user-attachments/assets/fcb77c89-f695-4b2d-919f-26f006346fb1)
 
