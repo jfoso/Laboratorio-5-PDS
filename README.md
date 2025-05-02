@@ -106,16 +106,15 @@ plt.imshow(np.abs(coeficientes), extent=[tiempo[0], tiempo[-1], scales[-1], scal
            cmap='jet', aspect='auto')
 plt.title('Transformada Wavelet de Morlet (ECG)')
 plt.xlabel('Tiempo (s)')
-plt.ylabel('Escala')
-plt.colorbar(label='Magnitud |CWT|')
+plt.ylabel('Frecuencia (Hz)')
+plt.colorbar(label='Magnitud')
 plt.grid(True)
 plt.show()
 ```
-**poner imagen**
+![image](https://github.com/user-attachments/assets/3c257497-1dca-4d4c-be5d-8af4164c3167)
 
 ## Resultados obtenidos
 ![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
-![image](https://github.com/user-attachments/assets/3c257497-1dca-4d4c-be5d-8af4164c3167)
 ![image](https://github.com/user-attachments/assets/fcb77c89-f695-4b2d-919f-26f006346fb1)
 
 
