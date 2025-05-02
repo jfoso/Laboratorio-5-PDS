@@ -113,4 +113,10 @@ plt.show()
 **poner imagen**
 
 ## Resultados obtenidos
+![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
+![image](https://github.com/user-attachments/assets/92f17e3a-986b-4fba-b775-03e2ed4f6457)
+![image](https://github.com/user-attachments/assets/3c257497-1dca-4d4c-be5d-8af4164c3167)
+![image](https://github.com/user-attachments/assets/fcb77c89-f695-4b2d-919f-26f006346fb1)
+
+
 
