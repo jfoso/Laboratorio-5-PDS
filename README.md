@@ -32,8 +32,8 @@ Posterior a esto se realizó un filtro IIR deacuerdo a los parametros de la señ
 data = pd.read_csv('C:\\Users\\sachi\\OneDrive - unimilitar.edu.co\\Sexto semestre\\Lab señales\\lab 5\\ecg saamtiago.csv')
 ecg = data.iloc[:, 1].values
 tiempo = data.iloc[:, 0].values
-tiempo = tiempo - tiempo[0]  # Convertir a tiempo relativo (en segundos desde el inicio)
-fs = 100  # Frecuencia de muestreo en Hz
+tiempo = tiempo - tiempo[0]  
+fs = 100  
 
 # === 2. Filtro pasa banda IIR ===
 lowcut = 0.5
@@ -81,8 +81,8 @@ Se obtuvo que se detectaron 27 picos R y con los siguentes parámetros:
 Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso continua, utilizando la función wavelet Morlet con frecuecias de **tatata**, obteniendo el siguiente resultado:
 ```ruby
 # === 8. Transformada Wavelet de Morlet ===
-scales = np.arange(1, 64)  # Ajusta según el nivel de detalle deseado
-waveletname = 'cmor1.5-1.0'  # Variante de Morlet compleja
+scales = np.arange(1, 64)  
+waveletname = 'cmor1.5-1.0' 
 
 coeficientes, frecuencias = pywt.cwt(ecg_filtrado, scales, waveletname, sampling_period=1/fs)
 
