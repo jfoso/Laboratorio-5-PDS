@@ -22,7 +22,7 @@ Esta es una técnica matemática para analizar señales que cambian con el tiemp
 * **Haar:** Simple, buena para detectar cambios repentinos.
 * **Daubechies (dbN) y Symlet (symN):** Familias versátiles con buen equilibrio entre localización temporal y frecuencial.
 * **Morlet:** Compleja, excelente para análisis tiempo-frecuencia de oscilaciones y ritmos, muy usada en VFC.
-* **Sombrero mexicano (Mexican Hat):** Útil para identificar picos y valles.\
+* **Sombrero mexicano (Mexican Hat):** Útil para identificar picos y valles.
   
 Al tener claros los topicos mencionados anteriormente, se procede a tomar a un sujeto de prueba para medir la señal electrocardiográfica durante 5 minutos en donde este será sometiendo a canciones de diferentes generos que causarán estrés en el mismo donde se  utilizó una frecuencia de muestreo de 1000Hz.
 
