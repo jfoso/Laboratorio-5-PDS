@@ -28,15 +28,81 @@ Al tener claros los topicos mencionados anteriormente se procede a tomar a un su
 
 Posterior a esto se realizó un filtro FIR deacuerdo a los parametros de la señal adquirida, para asi obtener la ecuación en diferencial del filtro e implementar el filtro a la señal obtenida asumiendo parámetros iniciales en 0 respectivamente mediante el siguiente código:
 ```ruby
-    **ponercodigo**
+# === 2. Filtro pasa banda IIR ===
+lowcut = 0.5
+highcut = 40.0
+order = 4
+nyq = 0.5 * fs
+low = lowcut / nyq
+high = highcut / nyq
+b, a = butter(order, [low, high], btype='band')
+ecg_filtrado = filtfilt(b, a, ecg)
+
 ```
  con la itención de identificar los picos R en la señal obtenida, calcular los intervalos R-R y obtener una nueva señal como se evidencia en la siguiente imagen:
  **poner imagen**
 A continuación se calculan los los parámetros básicos de la HRV en el dominio del tiempo, como la media de los intervalos R-R y su desviación estándar de la siguiente manera:
 ```ruby
-    **ponercodigo**
+# === 3. Detección de Picos R ===
+umbral = np.percentile(ecg_filtrado, 75)
+distancia_minima = int(fs * 0.4)
+prominencia_minima = 0.5
+
+picos_r, propiedades = find_peaks(ecg_filtrado, height=umbral, distance=distancia_minima, prominence=prominencia_minima)
+
+print(f"Picos R detectados: {len(picos_r)}")
+
+# === 4. Calcular intervalos R-R ===
+if len(picos_r) > 1:
+    rr_intervals = np.diff(tiempo[picos_r])
+else:
+    rr_intervals = np.array([])
+
+# === 5. Métricas HRV ===
+media_rr = np.mean(rr_intervals)
+std_rr = np.std(rr_intervals)
+rr_min = np.min(rr_intervals) if rr_intervals.size > 0 else 0
+rr_max = np.max(rr_intervals) if rr_intervals.size > 0 else 0
+
+# === 6. Graficar ECG con Picos R ===
+plt.figure(figsize=(10, 5))
+plt.plot(tiempo, ecg_filtrado, label='ECG Filtrado', color='blue')
+plt.plot(tiempo[picos_r], ecg_filtrado[picos_r], 'ro', label='Picos R')
+plt.title('ECG Filtrado con Picos R')
+plt.xlabel('Tiempo (s)')
+plt.ylabel('Amplitud')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# === 7. Graficar Intervalos R-R ===
+plt.figure(figsize=(10, 4))
+plt.plot(rr_intervals, marker='o')
+plt.title('Intervalos R-R')
+plt.xlabel('Índice')
+plt.ylabel('Intervalo (s)')
+plt.grid(True)
+plt.show()
 ```
 Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso **continua o discreta**, utilizando la función wavelet **tatata** con frecuecias de **tatata**, obteniendo el siguiente resultado:
+```ruby
+# === 8. Transformada Wavelet de Morlet ===
+scales = np.arange(1, 64)  # Ajusta según el nivel de detalle deseado
+waveletname = 'cmor1.5-1.0'  # Variante de Morlet compleja
+
+coeficientes, frecuencias = pywt.cwt(ecg_filtrado, scales, waveletname, sampling_period=1/fs)
+
+# === 9. Graficar Transformada Wavelet ===
+plt.figure(figsize=(12, 6))
+plt.imshow(np.abs(coeficientes), extent=[tiempo[0], tiempo[-1], scales[-1], scales[0]],
+           cmap='jet', aspect='auto')
+plt.title('Transformada Wavelet de Morlet (ECG)')
+plt.xlabel('Tiempo (s)')
+plt.ylabel('Escala')
+plt.colorbar(label='Magnitud |CWT|')
+plt.grid(True)
+plt.show()
+```
 **poner imagen**
 
 ## Resultados obtenidos
