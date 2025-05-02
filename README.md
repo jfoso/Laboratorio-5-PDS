@@ -6,7 +6,7 @@ Para comenzar a realizar de manera efectiva el laboratorio acerca de Variabilida
 ### Actividad simpática y parasimpática del sistema nervioso autónomo
 El sistema nervioso autónomo (SNA) es el que se encarga de regular las funciones involuntarias del cuerpo, como el ritmo cardíaco, la digestión y la respiración. Se divide en dos ramas principales con efectos generalmente opuestos:
 * **Sistema Nervioso Simpático:** Este actúa como el "acelerador" del cuerpo. Se activa en situaciones de estrés, peligro o excitación física, preparando al organismo para la acción ("lucha o huida"). Sus efectos incluyen: Aumento de la frecuencia y fuerza del latido cardíaco, aumento de la frecuencia respiratoria y dilatación de los bronquios, aumento de sudoración y en algunos casos se libera adrenalina y noradrenalina
-* **Sistema Nervioso Parasimpático:** Se podría decir que este actúa como el "freno" del cuerpo ya que redomina en estados de calma y relajación, en este caso se enfoca  en la conservación de energía y las funciones de "descanso y digestión". Sus efectos incluyen: Estimulación de la digestión y el aumento del flujo sanguíneo al sistema digestivo y disminución de la frecuencia cardíaca y la presión arterial.
+* **Sistema Nervioso Parasimpático:** Se podría decir que este actúa como el "freno" del cuerpo ya que redomina en estados de calma y relajación, en este caso se enfoca  en la conservación de energía y las funciones de "descanso y digestión". Sus efectos incluyen: Estimulación de la digestión y el aumento del flujo sanguíneo al sistema digestivo y disminución de la frecuencia cardíaca y la presión arterial.\
 En la mayoría de las situaciones estos dos sistemas trabajan de forma coordinada para mantener un equilibrio interno (homeostasis). La actividad de uno a menudo contrarresta la del otro, permitiendo respuestas adaptativas a diferentes estímulos a los que sea sometido. Un equilibrio saludable entre la actividad simpática y parasimpática es esencial para el bienestar general, en este caso para realizar el laboratorio se someterá al sujeto a evaluar a estimulos de relajación (actividad parasimpática) y de estrés (actividad simpática) para aumentar o disminuir su frecuencia cardiaca.
 ### Variabilidad de la Frecuencia Cardíaca (HRV)
 Esta se refiere a las fluctuaciones en la duración del intervalo R-R, es decir el tiempo entre latidos consecutivos del corazón, no a cambios en la frecuencia cardíaca promedio en sí. Estas variaciones minuto a minuto reflejan la modulación del ritmo cardíaco por el sistema nervioso autónomo.
@@ -22,11 +22,15 @@ Esta es una técnica matemática para analizar señales que cambian con el tiemp
 * **Haar:** Simple, buena para detectar cambios repentinos.
 * **Daubechies (dbN) y Symlet (symN):** Familias versátiles con buen equilibrio entre localización temporal y frecuencial.
 * **Morlet:** Compleja, excelente para análisis tiempo-frecuencia de oscilaciones y ritmos, muy usada en VFC.
-* **Sombrero mexicano (Mexican Hat):** Útil para identificar picos y valles.
-Al tener claros los topicos mencionados anteriormente se procede a tomar a un sujeto de prueba para medir la señal electrocardiográfica durante 5 minutos en reposo para así garantizar la reducción de ruido experimental y posterior a esos 5 minutos 3 mintos sometiendo al sujeto a audios e imagenes que causarán estrés en el mismo donde se  utilizó una frecuencia de muestreo de tatata, obteniendo la siguiente señal:**ponerseñal**
+* **Sombrero mexicano (Mexican Hat):** Útil para identificar picos y valles.\
+  
+Al tener claros los topicos mencionados anteriormente, se procede a tomar a un sujeto de prueba para medir la señal electrocardiográfica durante 5 minutos en donde este será sometiendo a canciones de diferentes generos que causarán estrés en el mismo donde se  utilizó una frecuencia de muestreo de 1000Hz.
 
+Para mejor entendimiento del plan de acción de este laboratorio, se realizó un diagrama de flujo donde se detallan los pasos a seguir y las condiciones de algunas de las etapas:
+![image](https://github.com/user-attachments/assets/425fabc3-f607-4c85-9193-3a4367c9d165)
 
-Posterior a esto se realizó un filtro IIR deacuerdo a los parametros de la señal adquirida, para asi obtener la ecuación en diferencial del filtro e implementar el filtro a la señal obtenida asumiendo parámetros iniciales en 0 respectivamente mediante el siguiente código:
+La adqusición de la señal se realizó a través de un dispositivo NIDAQ junto a un modulo AD8232, específico para ECG, el sujeto fue sometido a canciones del género death metal, amapiano y trap.
+Posterior a esto se realizó un filtro IIR deacuerdo a los parametros de la señal adquirida, para asi obtener la ecuación en diferencial del filtro e implementar el filtro a la señal obtenida asumiendo parámetros iniciales en 0 respectivamente, mediante el siguiente código:
 ```ruby
 # === 1. Cargar señal ECG ===
 data = pd.read_csv('C:\\Users\\sachi\\OneDrive - unimilitar.edu.co\\Sexto semestre\\Lab señales\\lab 5\\ecg saamtiago.csv')
@@ -72,13 +76,13 @@ std_rr = np.std(rr_intervals)
 rr_min = np.min(rr_intervals) if rr_intervals.size > 0 else 0
 rr_max = np.max(rr_intervals) if rr_intervals.size > 0 else 0
 ```
-Se obtuvo que se detectaron 27 picos R y con los siguentes parámetros:
+Se obtuvo que se detectaron 27 picos R con los siguentes parámetros:
  - Media R-R: 11.0615 s
  - Desviación estándar: 2.8721 s
  - Mínimo R-R: 8.0013 s
  - Máximo R-R: 20.0084 s
 
-Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso continua, utilizando la función wavelet Morlet con frecuecias de **tatata**, obteniendo el siguiente resultado:
+Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso continua, utilizando la función wavelet Morlet con bajas frecuencias ya que involucra sistema parasímpatico y símpatico, obteniendo el siguiente resultado:
 ```ruby
 # === 8. Transformada Wavelet de Morlet ===
 scales = np.arange(1, 64)  
@@ -105,4 +109,4 @@ plt.show()
 * La wavalet elegida fue morlet debido a su similitud con la señal, va a permitir mirar la evolución temporal de las frecuencias permitiendo detectar alteraciones cardiacadas, además de esto es continua haciendo semejanza a la señal de ECG.
 * Según los estadísticos relacionados con los picos R-R el hay un latido en promedio de 11,0615s, lo cual sugiere que no todos los picos fueron detectados ya que es un tiempo muy largo, puede estar relacionado a la toma de señal o problemas en el programa al detectar los picos.
 
-
+## Bibliografía
