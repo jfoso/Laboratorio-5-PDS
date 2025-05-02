@@ -111,7 +111,7 @@ plt.colorbar(label='Magnitud')
 plt.grid(True)
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/3c257497-1dca-4d4c-be5d-8af4164c3167)
+![image](https://github.com/user-attachments/assets/c9212c92-f304-4fa2-9e3e-77c0d27add65)
 
 ## Resultados obtenidos
 ![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
