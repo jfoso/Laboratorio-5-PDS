@@ -28,6 +28,13 @@ Al tener claros los topicos mencionados anteriormente se procede a tomar a un su
 
 Posterior a esto se realizó un filtro FIR deacuerdo a los parametros de la señal adquirida, para asi obtener la ecuación en diferencial del filtro e implementar el filtro a la señal obtenida asumiendo parámetros iniciales en 0 respectivamente mediante el siguiente código:
 ```ruby
+# === 1. Cargar señal ECG ===
+data = pd.read_csv('C:\\Users\\sachi\\OneDrive - unimilitar.edu.co\\Sexto semestre\\Lab señales\\lab 5\\ecg saamtiago.csv')
+ecg = data.iloc[:, 1].values
+tiempo = data.iloc[:, 0].values
+tiempo = tiempo - tiempo[0]  # Convertir a tiempo relativo (en segundos desde el inicio)
+fs = 100  # Frecuencia de muestreo en Hz
+
 # === 2. Filtro pasa banda IIR ===
 lowcut = 0.5
 highcut = 40.0
