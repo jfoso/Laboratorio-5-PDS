@@ -100,6 +100,9 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/c9212c92-f304-4fa2-9e3e-77c0d27add65)
 
 ## Resultados obtenidos
-
+* En la gráfica obtenida de la transformada de wavelet de nuestra señal se logra ver mayor concentración de energía en ciertos intervalos de tiempo y en otros se ve mucho menos, esto puede ser en los momentos en que la persona fue sometida a situaciones donde su frecuencia cardiaca aumentara y el después ya estaba en el modo de reposo o relajación.
+* Si se van a analizar señales que estén relacionadas con la actividad simpática del sistema nervioso se podrá observar que tendrá mayor concenración de energía como se identifico en el análisi de nuestra señal.
+* La wavalet elegida fue morlet debido a su similitud con la señal, va a permitir mirar la evolución temporal de las frecuencias permitiendo detectar alteraciones cardiacadas, además de esto es continua haciendo semejanza a la señal de ECG.
+* Según los estadísticos relacionados con los picos R-R el hay un latido en promedio de 11,0615s, lo cual sugiere que no todos los picos fueron detectados ya que es un tiempo muy largo, puede estar relacionado a la toma de señal o problemas en el programa al detectar los picos.
 
 
