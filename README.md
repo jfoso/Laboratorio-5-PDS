@@ -45,7 +45,7 @@ high = highcut / nyq
 b, a = butter(order, [low, high], btype='band')
 ecg_filtrado = filtfilt(b, a, ecg)
 ```
-![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
+![image](https://github.com/user-attachments/assets/59cf4f69-eac9-4610-b72d-65752d9a883a)
  con la intención de identificar los picos R en la señal obtenida, calcular los intervalos R-R y obtener una nueva señal como se evidencia en la siguiente imagen:
  ![image](https://github.com/user-attachments/assets/f74a4a5d-5259-4168-bde3-61d9efe08537)
  
@@ -100,8 +100,6 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/c9212c92-f304-4fa2-9e3e-77c0d27add65)
 
 ## Resultados obtenidos
-
-![image](https://github.com/user-attachments/assets/fcb77c89-f695-4b2d-919f-26f006346fb1)
 
 
 
