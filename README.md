@@ -44,8 +44,8 @@ low = lowcut / nyq
 high = highcut / nyq
 b, a = butter(order, [low, high], btype='band')
 ecg_filtrado = filtfilt(b, a, ecg)
-
 ```
+![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
  con la intención de identificar los picos R en la señal obtenida, calcular los intervalos R-R y obtener una nueva señal como se evidencia en la siguiente imagen:
  ![image](https://github.com/user-attachments/assets/f74a4a5d-5259-4168-bde3-61d9efe08537)
  
@@ -71,27 +71,13 @@ media_rr = np.mean(rr_intervals)
 std_rr = np.std(rr_intervals)
 rr_min = np.min(rr_intervals) if rr_intervals.size > 0 else 0
 rr_max = np.max(rr_intervals) if rr_intervals.size > 0 else 0
-
-# === 6. Graficar ECG con Picos R ===
-plt.figure(figsize=(10, 5))
-plt.plot(tiempo, ecg_filtrado, label='ECG Filtrado', color='blue')
-plt.plot(tiempo[picos_r], ecg_filtrado[picos_r], 'ro', label='Picos R')
-plt.title('ECG Filtrado con Picos R')
-plt.xlabel('Tiempo (s)')
-plt.ylabel('Amplitud')
-plt.legend()
-plt.grid(True)
-plt.show()
-
-# === 7. Graficar Intervalos R-R ===
-plt.figure(figsize=(10, 4))
-plt.plot(rr_intervals, marker='o')
-plt.title('Intervalos R-R')
-plt.xlabel('Índice')
-plt.ylabel('Intervalo (s)')
-plt.grid(True)
-plt.show()
 ```
+Se obtuvo que se detectaron 27 picos R y con los siguentes parámetros:
+ - Media R-R: 11.0615 s
+ - Desviación estándar: 2.8721 s
+ - Mínimo R-R: 8.0013 s
+ - Máximo R-R: 20.0084 s
+
 Posterior a esto se realiza un espectrograma de la HRV usando la transformada wavelet en este caso continua, utilizando la función wavelet Morlet con frecuecias de **tatata**, obteniendo el siguiente resultado:
 ```ruby
 # === 8. Transformada Wavelet de Morlet ===
@@ -114,7 +100,7 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/c9212c92-f304-4fa2-9e3e-77c0d27add65)
 
 ## Resultados obtenidos
-![image](https://github.com/user-attachments/assets/aaabd076-35df-4d91-a4b1-b1b69472dffa)
+
 ![image](https://github.com/user-attachments/assets/fcb77c89-f695-4b2d-919f-26f006346fb1)
 
 
