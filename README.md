@@ -8,7 +8,7 @@ El sistema nervioso autónomo (SNA) es el que se encarga de regular las funcione
 * **Sistema Nervioso Simpático:** Este actúa como el "acelerador" del cuerpo. Se activa en situaciones de estrés, peligro o excitación física, preparando al organismo para la acción ("lucha o huida"). Sus efectos incluyen: Aumento de la frecuencia y fuerza del latido cardíaco, aumento de la frecuencia respiratoria y dilatación de los bronquios, aumento de sudoración y en algunos casos se libera adrenalina y noradrenalina
 * **Sistema Nervioso Parasimpático:** Se podría decir que este actúa como el "freno" del cuerpo ya que redomina en estados de calma y relajación, en este caso se enfoca  en la conservación de energía y las funciones de "descanso y digestión". Sus efectos incluyen: Estimulación de la digestión y el aumento del flujo sanguíneo al sistema digestivo y disminución de la frecuencia cardíaca y la presión arterial.\
 En la mayoría de las situaciones estos dos sistemas trabajan de forma coordinada para mantener un equilibrio interno (homeostasis). La actividad de uno a menudo contrarresta la del otro, permitiendo respuestas adaptativas a diferentes estímulos a los que sea sometido. Un equilibrio saludable entre la actividad simpática y parasimpática es esencial para el bienestar general, en este caso para realizar el laboratorio se someterá al sujeto a evaluar a estimulos de relajación (actividad parasimpática) y de estrés (actividad simpática) para aumentar o disminuir su frecuencia cardiaca.
-### Variabilidad de la Frecuencia Cardíaca (HRV)
+### Variavilidad de la frecuencia cardiaca(HRV)
 Esta se refiere a las fluctuaciones en la duración del intervalo R-R, es decir el tiempo entre latidos consecutivos del corazón, no a cambios en la frecuencia cardíaca promedio en sí. Estas variaciones minuto a minuto reflejan la modulación del ritmo cardíaco por el sistema nervioso autónomo.
 Para el análisis de HRV mediante la Transformada Wavelet, las frecuencias de interés que más se examinan corresponden a la actividad de los sistemas simpático y parasimpático:
 * **Ondas de Alta Frecuencia (HF):** Estas se asocian con la actividad parasimpática y se encuentran en el rango de 0.15 a 0.4 Hz. Reflejan la influencia del sistema nervioso vago (nervio parasimpático) en la modulación del ritmo cardíaco, a menudo vinculadas a la respiración.
@@ -110,3 +110,6 @@ plt.show()
 * Según los estadísticos relacionados con los picos R-R el hay un latido en promedio de 11,0615s, lo cual sugiere que no todos los picos fueron detectados ya que es un tiempo muy largo, puede estar relacionado a la toma de señal o problemas en el programa al detectar los picos.
 
 ## Bibliografía
+* Fernández-Lavín, A., & Ovando-Shelley, E. (2019). Interpretación de señales usando transformadas wavelet continuas. In Geotechnical Engineering in the XXI Century: Lessons learned and future challenges (pp. 138-145).
+* Navarro, X. (2002). Fisiología del sistema nervioso autónomo. Revista Neurológica, 35(6), 553-562.
+* Morales, P. C. (2018). Aplicación de la variabilidad de la frecuencia cardíaca al estudio de las emociones (Doctoral dissertation, Universidade de Vigo).
